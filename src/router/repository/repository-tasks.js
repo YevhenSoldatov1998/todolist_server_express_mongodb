@@ -4,8 +4,8 @@ const tasks = new mongoose.Schema({
     description: String,
     title: String,
     completed: {type: Boolean, default: false},
-    status: {type: Number, default: 0},
-    priority: {type: Number, default: 1},
+    status: {type: Boolean, default: false},
+    priority: {type: Number, default: 0},
     startDate: Date,
     deadline: String,
     todoListId: String,
@@ -26,6 +26,7 @@ const getTasks = async (todoListId) => {
 const addTasks = async (title, todoListId) => {
     const tasks = new Tasks({description: null, title, todoListId,})
     await tasks.save()
+    return tasks
 }
 const updateTasks = async (taskId, items) => {
     try {

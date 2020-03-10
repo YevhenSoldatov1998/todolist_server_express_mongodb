@@ -6,7 +6,6 @@ const todoLists = new mongoose.Schema({
     order: Number
 });
 const TodoLists = mongoose.model('todolists', todoLists);
-
 const getTodoLists = async () => {
     const todoLists = await TodoLists.find();
     return todoLists

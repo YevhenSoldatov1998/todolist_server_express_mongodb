@@ -67,10 +67,11 @@ router.post('/:todoListId/tasks', async (req, res) => {
     try {
         const todoListId = req.params.todoListId;
         const title = req.body.title;
-        await repTasks.addTasks(title, todoListId);
+        let task = await repTasks.addTasks(title, todoListId);
         res.status(200).send({
             resultCode: 0,
-            message: 'tasks added'
+            message: 'tasks added',
+            item: task
         })
 
     } catch (e) {
