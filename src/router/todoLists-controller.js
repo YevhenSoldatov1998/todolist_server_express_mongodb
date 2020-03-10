@@ -18,8 +18,13 @@ router.get('/', async (req, res) => {
 })
 router.post('/', async (req, res) => {
     try {
-        await dal.addTodoLists(req.body.title)
-        res.status(200).json({resultCode: 0})
+        const todolist = await dal.addTodoLists(req.body.title)
+        res.status(200).json({
+            resultCode: 0,
+            data: {
+                item: todolist
+            }
+        })
     } catch (e) {
         res.status(404).send({
             resultCode: 1,
@@ -96,10 +101,13 @@ router.delete('/:todoListId/tasks/:taskId' , async (req, res) => {
 router.put('/:todoListId/tasks/:taskId' , async (req, res) => {
     try{
         const taskId = req.params.taskId;
+        const todoListId = req.params.todoListId;
         const items = req.body;
-        const result = await repTasks.updateTasks(taskId, items);
+        await repTasks.updateTasks(taskId, items);
+        const result = await repTasks.getTasks(todoListId)
         res.send({
-            resultCode: 0
+            resultCode: 0,
+            item: result
         })
     }
     catch (e) {

@@ -8,7 +8,6 @@ const tasks = new mongoose.Schema({
     priority: {type: Number, default: 1},
     startDate: Date,
     deadline: String,
-    id: String,
     todoListId: String,
     order: Number,
     addedDate: Date

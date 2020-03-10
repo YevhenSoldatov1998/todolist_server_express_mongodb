@@ -15,6 +15,7 @@ const addTodoLists = async (title) => {
     let addedDate = new Date().toJSON()
     const todoLists = new TodoLists({title, addedDate, order: 0});
     await todoLists.save()
+    return todoLists
 
 }
 const deleteTodoList = async (todoListId) => {
