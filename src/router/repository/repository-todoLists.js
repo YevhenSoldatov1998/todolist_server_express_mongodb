@@ -13,7 +13,7 @@ const getTodoLists = async () => {
 const addTodoLists = async (title) => {
     let addedDate = new Date().toJSON()
     const todoLists = new TodoLists({title, addedDate, order: 0});
-    await todoLists.save()
+    await todoLists.save();
     return todoLists
 
 }
